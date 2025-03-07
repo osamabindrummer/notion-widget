@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Número Aleatorio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh; /* Altura completa de la ventana */
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        #buho {
+            font-size: 48px; /* Tamaño del búho */
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #A87A2D; /* Color del botón */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: darkgoldenrod; /* Color al pasar el ratón (opcional) */
+        }
+        #resultado {
+            margin-top: 20px;
+            font-size: 24px;
+        }
+        input[type="range"] {
+            margin-top: 20px;
+            width: 300px; /* Ancho del control deslizante */
+        }
+        #max-value {
+            margin-top: 10px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div id="buho">🦉</div> <!-- Emoji de búho -->
+    <input type="range" id="rango" min="250" max="350" value="250" step="1">
+    <div id="max-value">Máximo: 250</div>
+    <button id="generar">Generar Número Aleatorio</button>
+    <div id="resultado"></div>
+
+    <script>
+        const rangoInput = document.getElementById('rango');
+        const maxValueDisplay = document.getElementById('max-value');
+
+        // Actualizar el texto del valor máximo al mover el slider
+        rangoInput.oninput = function() {
+            maxValueDisplay.textContent = 'Máximo: ' + rangoInput.value;
+        };
+
+        document.getElementById('generar').onclick = function() {
+            const maxRango = parseInt(rangoInput.value);
+            // Generar un número aleatorio entre 1 y el rango máximo
+            const numeroAleatorio = Math.floor(Math.random() * maxRango) + 1;
+            document.getElementById('resultado').textContent = numeroAleatorio;
+        };
+    </script>
+</body>
+</html>
